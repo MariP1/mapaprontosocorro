@@ -116,27 +116,38 @@ var pontos = {
   CirculacaoUrgencia1: [361, 996],
 
   // Cruzamentos
-  CirculacaoAmbulatorio2: [810, 1921],
-  recuo2: [818, 1278],
+  CirculacaoAmbulatorio2: [810, 1919],
+  recuo2: [810, 1278],
   HallDeAcessoAPassarela: [810, 750],
   SalaDeEsperaTomografo: [670, 750],
+  EntradaCirculacaoDeAcessoObservacao:[810, 1442],
+  CirculacaoDaObservacao: [1363, 1442],
 
   // EXAMES
   raiosx: [774, 1278],
   tomografia: [670, 424],
-  ressonancia: [250, 800],
+  ressonancia: [0, 0],
   laboratorio: [650, 450],
-  eletrocardiograma: [ ,],
+  eletrocardiograma: [869, 1964],
+  frenteeletro: [869,1919],
 
   // CONSULTÓRIOS
-  consultorio1: [700, 200],
-  consultorio2: [720, 250],
-  consultorio3: [740, 300],
-  consultorio4: [, ],
-  consultorio5: [, ],
-  consultorio6: [, ],
-  consultorio7: [, ],
-  consultorio8: [, ],
+  consultorio1: [573, 1965],
+  frenteconsultorio1: [573,1919],
+  consultorio2: [614, 1965],
+  frenteconsultorio2: [614, 1919],
+  consultorio3: [743, 1965],
+  frenteconsultorio3: [743, 1919],
+  consultorio4: [784, 1965],
+  frenteconsultorio4: [784, 1919],
+  consultorio5: [854, 1813],
+  frenteconsultorio5: [810, 1813],
+  consultorio6: [856, 1725],
+  frenteconsultorio6: [810,1725 ],
+  consultorio7: [856, 1679],
+  frenteconsultorio7: [810, 1679],
+  consultorio8: [758, 1550],
+  frenteconsultorio8: [810, 1550],
 //PROCEDIMENTOS
   suturaecurativos: [600, 1200],
   inalacao: [620, 1250],
@@ -144,6 +155,7 @@ var pontos = {
   reidratacao: [680, 1350],
 
   // INTERNAÇÃO
+  observacao: [1363, 1106],
   uti: [947, 1140],
   uce: [620, 1250],
   clinicamedica: [650, 1300],
@@ -164,16 +176,16 @@ var rotas = {
     tomografia: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
     ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
     laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoAmbulatorio1','eletrocardiograma'],
+    eletrocardiograma: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
     // CONSULTÓRIOS
-    consultorio1: ['CirculacaoAmbulatorio1','consultorio1'],
-    consultorio2: ['CirculacaoAmbulatorio1','consultorio2'],
-    consultorio3: ['CirculacaoAmbulatorio1','consultorio3'],
-    consultorio4: ['CirculacaoAmbulatorio1','consultorio3'],
-    consultorio5: ['CirculacaoAmbulatorio1','consultorio3'],
-    consultorio6: ['CirculacaoAmbulatorio1','consultorio3'],
-    consultorio7: ['CirculacaoAmbulatorio1','consultorio3'],
-    consultorio8: ['CirculacaoAmbulatorio1','consultorio3'],
+    consultorio1: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio1','consultorio1'],
+    consultorio2: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio2','consultorio2'],
+    consultorio3: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio3','consultorio3'],
+    consultorio4: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio4','consultorio4'],
+    consultorio5: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
+    consultorio6: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
+    consultorio7: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
+    consultorio8: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
     uti: ['CirculacaoAmbulatorio1','uti'],
     uce: ['CirculacaoAmbulatorio1','uce'],
@@ -184,7 +196,8 @@ var rotas = {
     suturaecurativos: ['CirculacaoAmbulatorio1','suturaecurativos'],
     escovacao: ['CirculacaoAmbulatorio1','escovacao'],
     inalacao: ['CirculacaoAmbulatorio1','inalacao'],
-    reidratacao: ['CirculacaoAmbulatorio1','reidratacao']
+    reidratacao: ['CirculacaoAmbulatorio1','reidratacao'],
+    observacao: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao','observacao'],
 
   },
   RotaCirculacaoUrgencia1: {
@@ -209,6 +222,7 @@ var rotas = {
     uce: ['CirculacaoUrgencia1','uce'],
     clinicamedica: ['CirculacaoUrgencia1','clinicamedica'],
     clinicacirurgica: ['CirculacaoUrgencia1','clinicacirurgica'],
+    Observacao: ['CirculacaoUrgencia1','clinicacirurgica'],
     // PROCEDIMENTOS
 
     suturaecurativos: ['CirculacaoUrgencia1','suturaecurativos'],
@@ -278,10 +292,11 @@ var menus = {
     { nome: "Tomografia", tipo: "rota", destino: "tomografia" },
     { nome: "Ressonância Magnética", tipo: "rota", destino: "ressonancia" },
     { nome: "Laboratório", tipo: "rota", destino: "laboratorio" },
-    { nome: "Eletrocardiograma", tipo: "rota", destino: "Eletrocardiograma" }
+    { nome: "Eletrocardiograma", tipo: "rota", destino: "eletrocardiograma" }
   ],
 
   internacao: [
+    { nome: "Observação", tipo: "rota", destino: "observacao" },
     { nome: "UTI", tipo: "rota", destino: "uti" },
     { nome: "UCE", tipo: "rota", destino: "uce" },
     { nome: "Clínica Médica", tipo: "rota", destino: "clinicamedica" },
