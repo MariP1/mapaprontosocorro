@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Mapa Interativo - Pronto Socorro</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+  body { margin:0; }
+  #map { height:100vh; }
+
+  /* Janela Modal */
+  #modal {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+  }
+
+  #modalContent {
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    width:80%;
+    max-width:400px;
+  }
+
+  button {
+    width:100%;
+    margin:8px 0;
+    padding:12px;
+    font-size:16px;
+    border:none;
+    border-radius:8px;
+    background:#1976D2;
+    color:white;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="modal">
+  <div id="modalContent">
+    <h2 id="tituloMenu">Para onde você deseja ir?</h2>
+    <div id="menuBotoes"></div>
+  </div>
+</div>
+
+<div id="map"></div>
+<div id="botaoVoltar" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3000;
+  display: none;
+">
+  <button onclick="voltarMenu()">Novo destino</button>
+</div>
+<script>
+
+// =========================
+// CONFIG MAPA
+// =========================
+
+var largura = 3000;
+var altura = 1668;
+
+var bounds = [[0,0], [altura, largura]];
+
+var map = L.map('map', {
+  crs: L.CRS.Simple,
+  minZoom: -3,
+  maxZoom: 2,
+  zoomControl: true
+});
+
+L.imageOverlay('planta.png', bounds).addTo(map);
+
+// Zoom fixo inicial
+map.setView([altura/2, largura/2], -1);
+// =========================
+// MODO CALIBRAÇÃO (CLIQUE)
+// =========================
+
+map.on('click', function(e) {
+  var lat = Math.round(e.latlng.lat);
+  var lng = Math.round(e.latlng.lng);
+
+  console.log("Coordenadas:", lat, lng);
+
+  L.popup()
+    .setLatLng(e.latlng)
+    .setContent("[" + lat + ", " + lng + "]")
+    .openOn(map);
+});
+
+// =========================
+// PONTOS DO MAPA
+// =========================
+
+var pontos = {
+
+  // QR Codes
+  CirculacaoAmbulatorio1: [522, 1887],
+  Recuo1: [522, 1919],
+  CirculacaoUrgencia1: [361, 996],
+
+  // Cruzamentos
+  CirculacaoAmbulatorio2: [828, 1921],
+  recuo2: [818, 1278],
+  HallDeAcessoAPassarela: [794, 749],
+  SalaDeEsperaTomografo: [682, 750],
+
+  // EXAMES
+  raiosx: [774, 1278],
+  tomografia: [670, 424],
+  ressonancia: [250, 800],
+  laboratorio: [650, 450],
+  eletrocardiograma: [ ,],
+
+  // CONSULTÓRIOS
+  consultorio1: [700, 200],
+  consultorio2: [720, 250],
+  consultorio3: [740, 300],
+  consultorio4: [, ],
+  consultorio5: [, ],
+  consultorio6: [, ],
+  consultorio7: [, ],
+  consultorio8: [, ],
+//PROCEDIMENTOS
+  suturaecurativos: [600, 1200],
+  inalacao: [620, 1250],
+  escovacao: [650, 1300],
+  reidratacao: [680, 1350],
+
+  // INTERNAÇÃO
+  uti: [947, 1140],
+  uce: [620, 1250],
+  clinicamedica: [650, 1300],
+  clinicacirurgica: [680, 1350]
+};
+
+// =========================
+// ROTAS DEFINIDAS
+// =========================
+var marcadorOrigem;
+var marcadorDestino;
+var rotas = {
+
+  CirculacaoAmbulatorio1: {
+
+    // EXAMES
+    raiosx: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','recuo2','raiosx'],
+    tomografia: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
+    laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
+    eletrocardiograma: ['CirculacaoAmbulatorio1','eletrocardiograma'],
+    // CONSULTÓRIOS
+    consultorio1: ['CirculacaoAmbulatorio1','consultorio1'],
+    consultorio2: ['CirculacaoAmbulatorio1','consultorio2'],
+    consultorio3: ['CirculacaoAmbulatorio1','consultorio3'],
+    consultorio4: ['CirculacaoAmbulatorio1','consultorio3'],
+    consultorio5: ['CirculacaoAmbulatorio1','consultorio3'],
+    consultorio6: ['CirculacaoAmbulatorio1','consultorio3'],
+    consultorio7: ['CirculacaoAmbulatorio1','consultorio3'],
+    consultorio8: ['CirculacaoAmbulatorio1','consultorio3'],
+    // INTERNAÇÃO
+    uti: ['CirculacaoAmbulatorio1','uti'],
+    uce: ['CirculacaoAmbulatorio1','uce'],
+    clinicamedica: ['CirculacaoAmbulatorio1','clinicamedica'],
+    clinicacirurgica: ['CirculacaoAmbulatorio1','clinicacirurgica'],
+    // PROCEDIMENTOS
+
+    suturaecurativos: ['CirculacaoAmbulatorio1','suturaecurativos'],
+    escovacao: ['CirculacaoAmbulatorio1','escovacao'],
+    inalacao: ['CirculacaoAmbulatorio1','inalacao'],
+    reidratacao: ['CirculacaoAmbulatorio1','reidratacao']
+
+  },
+  RotaCirculacaoUrgencia1: {
+
+    // EXAMES
+    raiosx: ['CirculacaoUrgencia1','CirculacaoUrgencia2','raiosx'],
+    tomografia: ['CirculacaoUrgencia1','CirculacaoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['CirculacaoUrgencia1','cruzamento1','ressonancia'],
+    laboratorio: ['CirculacaoUrgencia1','cruzamento1','laboratorio'],
+    eletrocardiograma: ['CirculacaoUrgencia1','eletrocardiograma'],
+    // CONSULTÓRIOS
+    consultorio1: ['CirculacaoUrgencia1','consultorio1'],
+    consultorio2: ['CirculacaoUrgencia1','consultorio2'],
+    consultorio3: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio4: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio5: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio6: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio7: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio8: ['CirculacaoUrgencia1','consultorio3'],
+    // INTERNAÇÃO
+    uti: ['CirculacaoUrgencia1','uti'],
+    uce: ['CirculacaoUrgencia1','uce'],
+    clinicamedica: ['CirculacaoUrgencia1','clinicamedica'],
+    clinicacirurgica: ['CirculacaoUrgencia1','clinicacirurgica'],
+    // PROCEDIMENTOS
+
+    suturaecurativos: ['CirculacaoUrgencia1','suturaecurativos'],
+    escovacao: ['CirculacaoUrgencia1','escovacao'],
+    inalacao: ['CirculacaoUrgencia1','inalacao'],
+    reidratacao: ['CirculacaoUrgencia1','reidratacao']
+
+  }
+
+};
+
+// =========================
+// POSIÇÃO INICIAL
+// =========================
+
+var urlParams = new URLSearchParams(window.location.search);
+var posicaoInicial = urlParams.get('pos');
+
+console.log("Posição inicial:", posicaoInicial);
+if (posicaoInicial && pontos[posicaoInicial]) {
+
+  marcadorOrigem = L.marker(pontos[posicaoInicial], {
+    icon: L.icon({
+      iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+      iconSize: [32,32],
+      iconAnchor: [16,32]
+    })
+  }).addTo(map)
+    .bindPopup("Você está aqui")
+    .openPopup();
+
+  }
+
+
+// =========================
+// MENU HIERÁRQUICO
+// =========================
+
+var menus = {
+
+  principal: [
+    { nome: "Consultórios", tipo: "submenu", destino: "consultorios" },
+    { nome: "Exames", tipo: "submenu", destino: "exames" },
+    { nome: "Procedimentos", tipo: "submenu", destino: "Procedimentos" },
+    { nome: "Internação", tipo: "submenu", destino: "internacao" },
+    
+  ],
+
+  consultorios: [
+    { nome: "Consultório 1", tipo: "rota", destino: "consultorio1" },
+    { nome: "Consultório 2", tipo: "rota", destino: "consultorio2" },
+    { nome: "Consultório 3", tipo: "rota", destino: "consultorio3" },
+    { nome: "Consultório 4", tipo: "rota", destino: "consultorio4" },
+    { nome: "Consultório 5", tipo: "rota", destino: "consultorio5" },
+    { nome: "Consultório 6", tipo: "rota", destino: "consultorio6" },
+    { nome: "Consultório 7", tipo: "rota", destino: "consultorio7" },
+    { nome: "Consultório 8", tipo: "rota", destino: "consultorio8" }
+  ],
+
+  exames: [
+    { nome: "Raios-X", tipo: "rota", destino: "raiosx" },
+    { nome: "Tomografia", tipo: "rota", destino: "tomografia" },
+    { nome: "Ressonância Magnética", tipo: "rota", destino: "ressonancia" },
+    { nome: "Laboratório", tipo: "rota", destino: "laboratorio" },
+    { nome: "Eletrocardiograma", tipo: "rota", destino: "Eletrocardiograma" }
+  ],
+
+  internacao: [
+    { nome: "UTI", tipo: "rota", destino: "uti" },
+    { nome: "UCE", tipo: "rota", destino: "uce" },
+    { nome: "Clínica Médica", tipo: "rota", destino: "clinicamedica" },
+    { nome: "Clínica Cirúrgica", tipo: "rota", destino: "clinicacirurgica" }
+  ],
+  Procedimentos: [
+    { nome: "Sutura/Curativos", tipo: "rota", destino: "suturaecurativos" },
+    { nome: "Escovação", tipo: "rota", destino: "escovacao" },
+    { nome: "Inalação", tipo: "rota", destino: "inalacao" },
+    { nome: "Reidratação", tipo: "rota", destino: "reidratacao" }
+]
+};
+
+function mostrarMenu(tipoMenu) {
+
+  var container = document.getElementById("menuBotoes");
+  var titulo = document.getElementById("tituloMenu");
+
+  container.innerHTML = "";
+
+  if (tipoMenu !== "principal") {
+    var botaoVoltar = document.createElement("button");
+    botaoVoltar.innerText = "⬅ Voltar";
+    botaoVoltar.onclick = function() {
+      mostrarMenu("principal");
+    };
+    container.appendChild(botaoVoltar);
+  }
+
+  menus[tipoMenu].forEach(function(item){
+
+    var botao = document.createElement("button");
+    botao.innerText = item.nome;
+
+    botao.onclick = function() {
+
+      if (item.tipo === "submenu") {
+        mostrarMenu(item.destino);
+      } else {
+        selecionarDestino(item.destino);
+      }
+
+    };
+
+    container.appendChild(botao);
+
+  });
+}
+
+mostrarMenu("principal");
+
+// =========================
+// DESENHAR ROTA
+// =========================
+
+var marcadorDestino;
+var rotaAtual;
+
+function selecionarDestino(destino) {
+
+  if (!rotas[posicaoInicial] || !rotas[posicaoInicial][destino]) {
+    alert("Rota não encontrada.");
+    return;
+  }
+
+  if (rotaAtual) {
+    map.removeLayer(rotaAtual);
+  }
+
+  if (marcadorDestino) {
+    map.removeLayer(marcadorDestino);
+  }
+
+  var caminho = rotas[posicaoInicial][destino];
+
+  var coordenadas = caminho.map(function(ponto){
+    return pontos[ponto];
+  });
+
+  rotaAtual = L.polyline(coordenadas, {
+    color:'blue',
+    weight:5
+  }).addTo(map);
+
+  marcadorDestino = L.marker(pontos[destino], {
+    icon: L.icon({
+      iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      iconSize: [32,32],
+      iconAnchor: [16,32]
+    })
+  }).addTo(map)
+    .bindPopup("Destino");
+
+  map.fitBounds(rotaAtual.getBounds());
+  document.getElementById("modal").style.display = "none";
+  document.getElementById("botaoVoltar").style.display = "block";
+}
+
+  if (posicaoInicial && pontos[posicaoInicial]) {
+
+  marcadorOrigem = L.marker(pontos[posicaoInicial], {
+    icon: L.icon({
+      iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+      iconSize: [32,32],
+      iconAnchor: [16,32]
+    })
+  }).addTo(map)
+    .bindPopup("Você está aqui")
+    .openPopup();
+ 
+}
+function voltarMenu() {
+
+  if (rotaAtual) {
+    map.removeLayer(rotaAtual);
+    rotaAtual = null;
+  }
+
+  if (marcadorDestino) {
+    map.removeLayer(marcadorDestino);
+    marcadorDestino = null;
+  }
+
+  // Recentraliza mapa
+  map.setView([altura/2, largura/2], -1);
+
+  // Esconde botão
+  document.getElementById("botaoVoltar").style.display = "none";
+
+  // Mostra menu principal novamente
+  mostrarMenu("principal");
+  document.getElementById("modal").style.display = "flex";
+}
+</script>
