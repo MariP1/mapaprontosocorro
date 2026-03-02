@@ -116,10 +116,10 @@ var pontos = {
   CirculacaoUrgencia1: [361, 996],
 
   // Cruzamentos
-  CirculacaoAmbulatorio2: [828, 1921],
+  CirculacaoAmbulatorio2: [810, 1921],
   recuo2: [818, 1278],
-  HallDeAcessoAPassarela: [794, 749],
-  SalaDeEsperaTomografo: [682, 750],
+  HallDeAcessoAPassarela: [810, 750],
+  SalaDeEsperaTomografo: [670, 750],
 
   // EXAMES
   raiosx: [774, 1278],
@@ -161,7 +161,7 @@ var rotas = {
 
     // EXAMES
     raiosx: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','recuo2','raiosx'],
-    tomografia: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    tomografia: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
     ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
     laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
     eletrocardiograma: ['CirculacaoAmbulatorio1','eletrocardiograma'],
@@ -226,6 +226,11 @@ var rotas = {
 
 var urlParams = new URLSearchParams(window.location.search);
 var posicaoInicial = urlParams.get('pos');
+
+// 🔹 POSIÇÃO PADRÃO PARA TESTE
+if (!posicaoInicial) {
+  posicaoInicial = "CirculacaoAmbulatorio1";
+}
 
 console.log("Posição inicial:", posicaoInicial);
 if (posicaoInicial && pontos[posicaoInicial]) {
