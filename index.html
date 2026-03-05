@@ -115,11 +115,11 @@ var pontos = {
   SalaDeEsperaEmergencia2: [405, 1548],
   SalaDePediatria1: [501,2206],
   SalaDePediatria2: [501,1971],
-  Circulacao1: [852,1976],
-  CirculacaoAmbulatorio1: [522, 1887],
-  CirculacaoDiagnostico1: [1341,1646],
-  CiruculacaoObservacao1:[917,1406],
-  HalldeacessoAPassarela1:[816,713],
+  Circulacao1: [852, 1976],
+  CirculacaoAmbulatorio1: [522,1887],
+  CirculacaoDiagnostico1: [1313,1919],
+  CiruculacaoObservacao1: [917,1406],
+  HalldeacessoAPassarela1: [816,713],
   CirculacaoUrgencia1: [361, 996],
   
   // Cruzamentos
@@ -129,10 +129,17 @@ var pontos = {
   SalaDeEsperaEmergencia2Recuo2:[380,1851],
   SalaDeEsperaEmergencia2Recuo3:[436,1851],
   SalaDeEsperaEmergencia2Recuo4:[436,1919],
+  SalaDePediatria1Recuo1: [491,2206],
+  SalaDePediatria2Recuo1:[491,1971],
   CirculacaoAmbulatorio2: [810, 1919],
   CirculacaoAmbulatorio3: [1303, 1919],
+  CiruculacaoObservacao1Recuo:[917,1438],
+  CirculacaoObervacao:[810,1438],
+  CirculacaoUrgencia1Recuo:[361,1026],
+  CirculaçãoUrgencia2:[810,1026],
 
-  CirculacaoAmbulatorio1Recuo1: [522, 1919],  
+  CirculacaoAmbulatorio1Recuo1: [522, 1919], 
+  CirculaçãoPed: [491,1919],   
   FrenteRaiox: [810, 1278],
   HallDeAcessoAPassarela: [810, 750],
   SalaDeEsperaTomografo: [670, 750],
@@ -251,248 +258,205 @@ var rotas = {
     SalaDePediatria1:{
     
     // EXAMES
-    raiosx: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','recuo2','raiosx'],
-    tomografia: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
+    raiosx: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','FrenteRaiox','raiosx'],
+    tomografia: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
     // CONSULTÓRIOS
-    consultorio1: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio1','consultorio1'],
-    consultorio2: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio2','consultorio2'],
-    consultorio3: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio3','consultorio3'],
-    consultorio4: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio4','consultorio4'],
-    consultorio5: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
-    consultorio6: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
-    consultorio7: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
-    consultorio8: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
+    consultorio1: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','frenteconsultorio1','consultorio1'],
+    consultorio2: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','frenteconsultorio2','consultorio2'],
+    consultorio3: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','frenteconsultorio3','consultorio3'],
+    consultorio4: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','frenteconsultorio4','consultorio4'],
+    consultorio5: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
+    consultorio6: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
+    consultorio7: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
+    consultorio8: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
-    uti: ['CirculacaoAmbulatorio1','uti'],
-    uce: ['CirculacaoAmbulatorio1','uce'],
-    clinicamedica: ['CirculacaoAmbulatorio1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoAmbulatorio1','clinicacirurgica'],
+    uti: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    uce: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicamedica: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicacirurgica: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
     // PROCEDIMENTOS
-    suturaecurativos: ['CirculacaoAmbulatorio1','suturaecurativos'],
-    escovacao: ['CirculacaoAmbulatorio1','escovacao'],
-    inalacao: ['CirculacaoAmbulatorio1','inalacao'],
-    reidratacao: ['CirculacaoAmbulatorio1','reidratacao'],
-    observacao: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao','observacao'],},
+    suturaecurativos: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['SalaDePediatria1','SalaDePediatria1Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frentereidratacao','reidratacao'],
+  },
 
     SalaDePediatria2:{
     
     // EXAMES
-    raiosx: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','recuo2','raiosx'],
-    tomografia: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
+    raiosx: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','FrenteRaiox','raiosx'],
+    tomografia: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
     // CONSULTÓRIOS
-    consultorio1: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio1','consultorio1'],
-    consultorio2: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio2','consultorio2'],
-    consultorio3: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio3','consultorio3'],
-    consultorio4: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio4','consultorio4'],
-    consultorio5: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
-    consultorio6: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
-    consultorio7: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
-    consultorio8: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
+    consultorio1: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','frenteconsultorio1','consultorio1'],
+    consultorio2: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','frenteconsultorio2','consultorio2'],
+    consultorio3: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','frenteconsultorio3','consultorio3'],
+    consultorio4: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','frenteconsultorio4','consultorio4'],
+    consultorio5: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
+    consultorio6: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
+    consultorio7: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
+    consultorio8: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
-    uti: ['CirculacaoAmbulatorio1','uti'],
-    uce: ['CirculacaoAmbulatorio1','uce'],
-    clinicamedica: ['CirculacaoAmbulatorio1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoAmbulatorio1','clinicacirurgica'],
+    uti: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    uce: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicamedica: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicacirurgica: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
     // PROCEDIMENTOS
-    suturaecurativos: ['CirculacaoAmbulatorio1','suturaecurativos'],
-    escovacao: ['CirculacaoAmbulatorio1','escovacao'],
-    inalacao: ['CirculacaoAmbulatorio1','inalacao'],
-    reidratacao: ['CirculacaoAmbulatorio1','reidratacao'],
-    observacao: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao','observacao'],},
-
-     Circulacao1:{
-    
-    // EXAMES
-    raiosx: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','recuo2','raiosx'],
-    tomografia: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
-    // CONSULTÓRIOS
-    consultorio1: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio1','consultorio1'],
-    consultorio2: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio2','consultorio2'],
-    consultorio3: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio3','consultorio3'],
-    consultorio4: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio4','consultorio4'],
-    consultorio5: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
-    consultorio6: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
-    consultorio7: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
-    consultorio8: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
-    // INTERNAÇÃO
-    uti: ['CirculacaoAmbulatorio1','uti'],
-    uce: ['CirculacaoAmbulatorio1','uce'],
-    clinicamedica: ['CirculacaoAmbulatorio1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoAmbulatorio1','clinicacirurgica'],
-    // PROCEDIMENTOS
-    suturaecurativos: ['CirculacaoAmbulatorio1','suturaecurativos'],
-    escovacao: ['CirculacaoAmbulatorio1','escovacao'],
-    inalacao: ['CirculacaoAmbulatorio1','inalacao'],
-    reidratacao: ['CirculacaoAmbulatorio1','reidratacao'],
-    observacao: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao','observacao'],},
-
-  CirculacaoAmbulatorio1: {
-
-    // EXAMES
-    raiosx: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','recuo2','raiosx'],
-    tomografia: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoAmbulatorio1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoAmbulatorio1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
-    // CONSULTÓRIOS
-    consultorio1: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio1','consultorio1'],
-    consultorio2: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio2','consultorio2'],
-    consultorio3: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio3','consultorio3'],
-    consultorio4: ['CirculacaoAmbulatorio1','Recuo1','frenteconsultorio4','consultorio4'],
-    consultorio5: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
-    consultorio6: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
-    consultorio7: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
-    consultorio8: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
-    // INTERNAÇÃO
-    uti: ['CirculacaoAmbulatorio1','uti'],
-    uce: ['CirculacaoAmbulatorio1','uce'],
-    clinicamedica: ['CirculacaoAmbulatorio1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoAmbulatorio1','clinicacirurgica'],
-    // PROCEDIMENTOS
-
-    suturaecurativos: ['CirculacaoAmbulatorio1','suturaecurativos'],
-    escovacao: ['CirculacaoAmbulatorio1','escovacao'],
-    inalacao: ['CirculacaoAmbulatorio1','inalacao'],
-    reidratacao: ['CirculacaoAmbulatorio1','reidratacao'],
-    observacao: ['CirculacaoAmbulatorio1','Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao','observacao'],
-
+    suturaecurativos: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['SalaDePediatria2','SalaDePediatria2Recuo1','CirculaçãoPed','CirculacaoAmbulatorio2','frentereidratacao','reidratacao'],
   },
+     
+    CirculacaoAmbulatorio1:{
+    
+     // EXAMES
+    raiosx: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','FrenteRaiox','raiosx'],
+    tomografia: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
+    // CONSULTÓRIOS
+    consultorio1: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','frenteconsultorio1','consultorio1'],
+    consultorio2: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','frenteconsultorio2','consultorio2'],
+    consultorio3: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','frenteconsultorio3','consultorio3'],
+    consultorio4: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','frenteconsultorio4','consultorio4'],
+    consultorio5: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
+    consultorio6: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
+    consultorio7: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
+    consultorio8: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
+    // INTERNAÇÃO
+    uti: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    uce: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicamedica: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicacirurgica: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    // PROCEDIMENTOS
+    suturaecurativos: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['CirculacaoAmbulatorio1','CirculacaoAmbulatorio1Recuo1','CirculacaoAmbulatorio2','frentereidratacao','reidratacao'],
+  },
+  
  CirculacaoDiagnostico1: {
 
     // EXAMES
-    raiosx: ['CirculacaoUrgencia1','CirculacaoUrgencia2','raiosx'],
-    tomografia: ['CirculacaoUrgencia1','CirculacaoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoUrgencia1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoUrgencia1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoUrgencia1','eletrocardiograma'],
+    raiosx: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','FrenteRaiox','raiosx'],
+    tomografia: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
     // CONSULTÓRIOS
-    consultorio1: ['CirculacaoUrgencia1','consultorio1'],
-    consultorio2: ['CirculacaoUrgencia1','consultorio2'],
-    consultorio3: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio4: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio5: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio6: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio7: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio8: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio1: ['CirculacaoDiagnostico1','frenteconsultorio1','consultorio1'],
+    consultorio2: ['CirculacaoDiagnostico1','frenteconsultorio2','consultorio2'],
+    consultorio3: ['CirculacaoDiagnostico1','frenteconsultorio3','consultorio3'],
+    consultorio4: ['CirculacaoDiagnostico1','frenteconsultorio4','consultorio4'],
+    consultorio5: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','frenteconsultorio5','consultorio5'],
+    consultorio6: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','frenteconsultorio6','consultorio6'],
+    consultorio7: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','frenteconsultorio7','consultorio7'],
+    consultorio8: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
-    uti: ['CirculacaoUrgencia1','uti'],
-    uce: ['CirculacaoUrgencia1','uce'],
-    clinicamedica: ['CirculacaoUrgencia1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoUrgencia1','clinicacirurgica'],
-    Observacao: ['CirculacaoUrgencia1','clinicacirurgica'],
+    uti: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    uce: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicamedica: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicacirurgica: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
     // PROCEDIMENTOS
-
-    suturaecurativos: ['CirculacaoUrgencia1','suturaecurativos'],
-    escovacao: ['CirculacaoUrgencia1','escovacao'],
-    inalacao: ['CirculacaoUrgencia1','inalacao'],
-    reidratacao: ['CirculacaoUrgencia1','reidratacao']
-
+    suturaecurativos: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['CirculacaoDiagnostico1','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['CirculacaoDiagnostico1','frentereidratacao','reidratacao'],
   },
 
   CiruculacaoObservacao1: {
 
     // EXAMES
-    raiosx: ['CirculacaoUrgencia1','CirculacaoUrgencia2','raiosx'],
-    tomografia: ['CirculacaoUrgencia1','CirculacaoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoUrgencia1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoUrgencia1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoUrgencia1','eletrocardiograma'],
+    raiosx: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','FrenteRaiox','raiosx'],
+    tomografia: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
     // CONSULTÓRIOS
-    consultorio1: ['CirculacaoUrgencia1','consultorio1'],
-    consultorio2: ['CirculacaoUrgencia1','consultorio2'],
-    consultorio3: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio4: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio5: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio6: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio7: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio8: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio1: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','frenteconsultorio1','consultorio1'],
+    consultorio2: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','frenteconsultorio2','consultorio2'],
+    consultorio3: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','frenteconsultorio3','consultorio3'],
+    consultorio4: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','frenteconsultorio4','consultorio4'],
+    consultorio5: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','frenteconsultorio5','consultorio5'],
+    consultorio6: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','frenteconsultorio6','consultorio6'],
+    consultorio7: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','frenteconsultorio7','consultorio7'],
+    consultorio8: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
-    uti: ['CirculacaoUrgencia1','uti'],
-    uce: ['CirculacaoUrgencia1','uce'],
-    clinicamedica: ['CirculacaoUrgencia1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoUrgencia1','clinicacirurgica'],
-    Observacao: ['CirculacaoUrgencia1','clinicacirurgica'],
+    uti: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoDaObservacao'],
+    uce: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoDaObservacao'],
+    clinicamedica: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoDaObservacao'],
+    clinicacirurgica: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoDaObservacao'],
     // PROCEDIMENTOS
-
-    suturaecurativos: ['CirculacaoUrgencia1','suturaecurativos'],
-    escovacao: ['CirculacaoUrgencia1','escovacao'],
-    inalacao: ['CirculacaoUrgencia1','inalacao'],
-    reidratacao: ['CirculacaoUrgencia1','reidratacao']
-
+    suturaecurativos: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['CiruculacaoObservacao1','CiruculacaoObservacao1Recuo','CirculacaoObervacao','CirculacaoAmbulatorio2','frentereidratacao','reidratacao'],
   },
 
   HalldeacessoAPassarela1: {
 
-    // EXAMES
-    raiosx: ['CirculacaoUrgencia1','CirculacaoUrgencia2','raiosx'],
-    tomografia: ['CirculacaoUrgencia1','CirculacaoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoUrgencia1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoUrgencia1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoUrgencia1','eletrocardiograma'],
+   // EXAMES
+    raiosx: ['HalldeacessoAPassarela','FrenteRaiox','raiosx'],
+    tomografia: ['HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','frenteeletro','eletrocardiograma'],
     // CONSULTÓRIOS
-    consultorio1: ['CirculacaoUrgencia1','consultorio1'],
-    consultorio2: ['CirculacaoUrgencia1','consultorio2'],
-    consultorio3: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio4: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio5: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio6: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio7: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio8: ['CirculacaoUrgencia1','consultorio3'],
+    consultorio1: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','frenteconsultorio1','consultorio1'],
+    consultorio2: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','frenteconsultorio2','consultorio2'],
+    consultorio3: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','frenteconsultorio3','consultorio3'],
+    consultorio4: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','frenteconsultorio4','consultorio4'],
+    consultorio5: ['HallDeAcessoAPassarela','frenteconsultorio5','consultorio5'],
+    consultorio6: ['HallDeAcessoAPassarela','frenteconsultorio6','consultorio6'],
+    consultorio7: ['HallDeAcessoAPassarela','frenteconsultorio7','consultorio7'],
+    consultorio8: ['HallDeAcessoAPassarela','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
-    uti: ['CirculacaoUrgencia1','uti'],
-    uce: ['CirculacaoUrgencia1','uce'],
-    clinicamedica: ['CirculacaoUrgencia1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoUrgencia1','clinicacirurgica'],
-    Observacao: ['CirculacaoUrgencia1','clinicacirurgica'],
+    uti: ['HallDeAcessoAPassarela','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    uce: ['HallDeAcessoAPassarela','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicamedica: ['HallDeAcessoAPassarela','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicacirurgica: ['HallDeAcessoAPassarela','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
     // PROCEDIMENTOS
-
-    suturaecurativos: ['CirculacaoUrgencia1','suturaecurativos'],
-    escovacao: ['CirculacaoUrgencia1','escovacao'],
-    inalacao: ['CirculacaoUrgencia1','inalacao'],
-    reidratacao: ['CirculacaoUrgencia1','reidratacao']
-
+    suturaecurativos: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['HallDeAcessoAPassarela','CirculacaoAmbulatorio2','frentereidratacao','reidratacao'],
   },
 
   CirculacaoUrgencia1: {
 
     // EXAMES
-    raiosx: ['CirculacaoUrgencia1','CirculacaoUrgencia2','raiosx'],
-    tomografia: ['CirculacaoUrgencia1','CirculacaoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
-    ressonancia: ['CirculacaoUrgencia1','cruzamento1','ressonancia'],
-    laboratorio: ['CirculacaoUrgencia1','cruzamento1','laboratorio'],
-    eletrocardiograma: ['CirculacaoUrgencia1','eletrocardiograma'],
-    // CONSULTÓRIOS
-    consultorio1: ['CirculacaoUrgencia1','consultorio1'],
-    consultorio2: ['CirculacaoUrgencia1','consultorio2'],
-    consultorio3: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio4: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio5: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio6: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio7: ['CirculacaoUrgencia1','consultorio3'],
-    consultorio8: ['CirculacaoUrgencia1','consultorio3'],
+    raiosx: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','FrenteRaiox','raiosx'],
+    tomografia: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    ressonancia: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    laboratorio: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+    eletrocardiograma: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','HallDeAcessoAPassarela','SalaDeEsperaTomografo','tomografia'],
+   // CONSULTÓRIOS
+    consultorio1: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','frenteconsultorio1','consultorio1'],
+    consultorio2: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','frenteconsultorio2','consultorio2'],
+    consultorio3: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','frenteconsultorio3','consultorio3'],
+    consultorio4: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','frenteconsultorio4','consultorio4'],
+    consultorio5: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','frenteconsultorio5','consultorio5'],
+    consultorio6: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','frenteconsultorio6','consultorio6'],
+    consultorio7: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','frenteconsultorio7','consultorio7'],
+    consultorio8: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','frenteconsultorio8','consultorio8'],
     // INTERNAÇÃO
-    uti: ['CirculacaoUrgencia1','uti'],
-    uce: ['CirculacaoUrgencia1','uce'],
-    clinicamedica: ['CirculacaoUrgencia1','clinicamedica'],
-    clinicacirurgica: ['CirculacaoUrgencia1','clinicacirurgica'],
-    Observacao: ['CirculacaoUrgencia1','clinicacirurgica'],
+    uti: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    uce: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicamedica: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
+    clinicacirurgica: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','EntradaCirculacaoDeAcessoObservacao','CirculacaoDaObservacao'],
     // PROCEDIMENTOS
-
-    suturaecurativos: ['CirculacaoUrgencia1','suturaecurativos'],
-    escovacao: ['CirculacaoUrgencia1','escovacao'],
-    inalacao: ['CirculacaoUrgencia1','inalacao'],
-    reidratacao: ['CirculacaoUrgencia1','reidratacao']
-
-  }
+    suturaecurativos: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frentesutura','suturaecurativos'],
+    escovacao: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteescovacao','escovacao'],
+    inalacao: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','CirculacaoAmbulatorio3','frenteinalacao','inalacao'],
+    reidratacao: ['CirculacaoUrgencia1','CirculacaoUrgencia1Recuo','CirculaçãoUrgencia2','CirculacaoAmbulatorio2','frentereidratacao','reidratacao'],
+  },
 
 };
 
@@ -504,9 +468,6 @@ var urlParams = new URLSearchParams(window.location.search);
 var posicaoInicial = urlParams.get('pos');
 
 // 🔹 POSIÇÃO PADRÃO PARA TESTE
-if (!posicaoInicial) {
-  posicaoInicial = "CirculacaoAmbulatorio1";
-}
 
 console.log("Posição inicial:", posicaoInicial);
 if (posicaoInicial && pontos[posicaoInicial]) {
